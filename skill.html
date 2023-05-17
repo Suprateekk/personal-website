@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skills Page</title>
+  <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
+  <style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-image: linear-gradient(to bottom, #232526, #414345);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+    
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        animation: fade-in 1s ease-out;
+      }
+      
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+    
+    h1 {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+      color:#ffcc00;
+      animation: scale-up 0.8s ease-in-out;
+    }
+    @keyframes scale-up {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skills-list li {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      position: relative;
+      background-color: #eee;
+      border-radius: 5px;
+      padding: 15px;
+      list-style: none;
+    }
+    
+    .skills-list li h3 {
+      font-weight: bold;
+      list-style: none;
+      color: #333;
+    }
+    
+    .skills-list li:before {
+      content: '';
+      width: 10px;
+      height: 10px;
+    
+      border-radius: 50%;
+      list-style: none;
+      position: absolute;
+      left: 0;
+      top: 15px;
+    }
+    
+    .skills-list li p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #666;
+      animation: slide-in 1s ease-out;
+    }
+    @keyframes slide-in {
+        from { transform: translateX(-100px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Skills</h1>
+    <ul class="skills-list" style="list-style: none;">
+      <li>
+        <h3>Programming in C</h3>
+        <p>I learned C programming during my university studies. It helped me develop a strong foundation in programming principles, memory management, and low-level operations. I gained experience in writing efficient and structured code using C language.</p>
+      </li>
+      <li>
+        <h3>Java</h3>
+        <p>I acquired Java programming skills during my university curriculum. Java enabled me to build robust and scalable applications. I gained expertise in object-oriented programming, multi-threading, and Java frameworks for enterprise development.</p>
+      </li>
+      <li>
+        <h3>Python</h3>
+        <p>Python became an integral part of my university education. I learned to leverage its simplicity and versatility to develop various applications. I gained proficiency in data manipulation, scripting, web development, and scientific computing using Python.</p>
+      </li>
+      <li>
+        <h3>HTML</h3>
+        <p>I learned HTML as a fundamental web development skill. It allowed me to structure web pages, define content, and create semantic layouts. I gained knowledge of HTML5 features and best practices for building modern and accessible websites.</p>
+      </li>
+      <li>
+        <h3>CSS</h3>
+        <p>CSS complemented my HTML skills and enabled me to style web pages. I learned to apply CSS selectors, properties, and responsive design techniques. I gained expertise in creating visually appealing and user-friendly web interfaces.</p>
+      </li>
+      <li>
+        <h3>JavaScript</h3>
+        <p>JavaScript empowered me to add interactivity and dynamic behavior to web applications. I learned essential concepts like DOM manipulation, event handling, and AJAX. I gained proficiency in JavaScript frameworks and libraries for front-end development.</p>
+    </li>
+    <li>
+    <h3>Node.js</h3>
+    <p>I explored Node.js during my university studies, which allowed me to build scalable and server-side applications. I learned to use frameworks like Express.js, work with databases, and develop RESTful APIs using JavaScript on the server-side.</p>
+    </li>
+    <li>
+    <h3>React</h3>
+    <p>React became my go-to framework for building user interfaces. I gained expertise in developing component-based applications, managing state, and utilizing React ecosystem tools. React enabled me to create interactive and efficient front-end experiences.</p>
+    </li>
+    <li>
+    <h3>SQL</h3>
+    <p>I learned SQL for database management and query processing. It enabled me to design and manipulate relational databases, write complex queries, and optimize database performance. SQL has been crucial for developing data-driven applications.</p>
+    </li>
+    </ul>
+    
+      </div>
+    </body>
+    </html>

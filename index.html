@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Suprateek sen - Personal Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
+  <style>
+    @media screen and (min-device-width: 768px)
+    and (max-device-width: 1024px){
+     header nav h1{
+      font-size: 40px;
+      position: relative;
+      top:-20px;
+     }
+     .project-grid{
+      display: flex;
+      flex-direction: column;
+     }
+       
+    }
+    @media screen and (min-device-width: 0px)
+    and (max-device-width:767px){
+
+      .project-grid{
+        display: flex;
+        flex-direction: column;
+       }
+    }
+    
+  </style>
+  <script>
+   
+    document.addEventListener("DOMContentLoaded", function() {
+      
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Suprateek sen</h1>
+      <ul>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/skill.html">Skills</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="hero">
+    <div class="hero-content">
+      <h2>Welcome to My Website</h2>
+      <p>I am a passionate web developer.</p>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="/crop_image-modified-removebg-preview (1).png" alt="Profile Picture">
+      <p>"Hi, I'm Suprateek sen, a web developer. I combine design and coding to create captivating websites. With a focus on user experience and innovative technologies, I deliver functional and visually appealing solutions. Let's embark on an exciting journey through the ever-evolving world of web development together!"</p>
+    </div>
+  </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <p>"I am a web developer skilled in HTML, CSS, JS, React, Node, SQL, and C. I acquired these proficiencies during my university studies, and I am passionate about crafting dynamic and engaging web experiences."</p>
+  </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="/todo.png" alt="Project 1">
+        <div class="project-info">
+          <h3>Project 1</h3>
+          <p>This is a To-Do list project which i made using Html ,Css and Java script.</p>
+          <a href="/project1.html" class="btn">View Details</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="/Task manager.png" alt="Project 2">
+        <div class="project-info">
+          <h3>Project 2</h3>
+          <p>This is a Task-Manager site in which you can add or remove task as your wish.</p>
+          <a href="/project2.html" class="btn">View Details</a>
+</div>
+</div>
+</div>
+  </section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn"><a href="mailto:suprateeksen62@gmail.com" id="mail" style="color:black;text-decoration:none;">Send Message</a></button>
+    </form>
+  </section>
+  <footer>
+    <p>&copy; 2023 Suprateek sen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

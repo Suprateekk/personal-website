@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Manager</title>
+  <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
+  <style>
+    /* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* Colors */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --tertiary-color: #ecf0f1;
+  --text-color: #333333;
+  --placeholder-color: #999999;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--tertiary-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+input[type="text"]::placeholder {
+  color: var(--placeholder-color);
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.task-filters {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.filter-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: var(--tertiary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: var(--tertiary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.task-item:hover {
+  background-color: #f2f2f2;
+}
+
+.task-item.completed {
+  background-color: #e6e6e6;
+}
+
+.task-item .task-name {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.task-item .task-priority {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.task-item .task-actions button {
+  padding: 5px;
+  font-size: 14px;
+  color: var(--text-color);
+  background-color: var(--tertiary-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-item .task-actions button:hover {
+  background-color: #f2f2f2;
+}
+
+@media(max-width: 480px) {
+    .task-item .task-priority {
+    display: none;
+    }
+    }
+
+      
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Task Manager</h1>
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="Enter a task">
+      <button type="submit">Add Task</button>
+    </form>
+    <div class="task-filters">
+      <button class="filter-button" data-filter="all">All</button>
+      <button class="filter-button" data-filter="active">Active</button>
+      <button class="filter-button" data-filter="completed">Completed</button>
+    </div>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+    const form = document.getElementById('task-form');
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const taskName = taskInput.value;
+    
+      if (taskName.trim() !== '') {
+        const task = createTask(taskName);
+        taskList.appendChild(task);
+    
+        taskInput.value = '';
+      }
+    });
+    
+    taskList.addEventListener('click', function (e) {
+      if (e.target.classList.contains('delete-task')) {
+        const taskItem = e.target.closest('.task-item');
+        taskItem.remove();
+      }
+    
+      if (e.target.classList.contains('complete-task')) {
+        const taskItem = e.target.closest('.task-item');
+        taskItem.classList.toggle('completed');
+      }
+    });
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        const filterValue = e.target.getAttribute('data-filter');
+    
+        filterTasks(filterValue);
+    
+        filterButtons.forEach(btn => {
+          btn.classList.toggle('active', btn === e.target);
+        });
+      });
+    });
+    
+    function createTask(name) {
+      const taskItem = document.createElement('li');
+      taskItem.classList.add('task-item');
+    
+      const taskName = document.createElement('span');
+      taskName.classList.add('task-name');
+      taskName.textContent = name;
+      
+      const taskPriority = document.createElement('span');
+      taskPriority.classList.add('task-priority');
+      taskPriority.textContent = 'Low Priority';
+      
+      const taskActions = document.createElement('div');
+      taskActions.classList.add('task-actions');
+      
+      const completeButton = document.createElement('button');
+      completeButton.classList.add('complete-task');
+      completeButton.innerHTML = '<i class="fas fa-check"></i>';
+      
+      const deleteButton = document.createElement('button');
+      deleteButton.classList.add('delete-task');
+      deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+      
+      taskActions.appendChild(completeButton);
+      taskActions.appendChild(deleteButton);
+      
+      taskItem.appendChild(taskName);
+      taskItem.appendChild(taskPriority);
+      taskItem.appendChild(taskActions);
+      
+      return taskItem;
+      }
+      
+      function filterTasks(filter) {
+      const taskItems = taskList.querySelectorAll('.task-item');
+      
+      taskItems.forEach(taskItem => {
+      switch (filter) {
+      case 'all':
+      taskItem.style.display = 'flex';
+      break;
+      case 'active':
+      taskItem.style.display = taskItem.classList.contains('completed') ? 'none' : 'flex';
+      break;
+      case 'completed':
+      taskItem.style.display = taskItem.classList.contains('completed') ? 'flex' : 'none';
+      break;
+      }
+      });
+      }
+    
+  
+
+  </script>
+</body>
+</html>

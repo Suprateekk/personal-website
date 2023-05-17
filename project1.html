@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
+  <style>
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .container {
+        max-width: 500px;
+        margin: 30px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      
+      h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .input-container {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      
+      .input-container input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-bottom: 2px solid #aaa;
+        border-radius: 0;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      
+      .input-container input[type="text"]:focus {
+        border-color: #4caf50;
+      }
+      
+      .input-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s;
+      }
+      
+      .input-container button:hover {
+        background-color: #45a049;
+      }
+      
+      .task-list {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .task-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        transition: background-color 0.3s;
+      }
+      
+      .task-list li:last-child {
+        border-bottom: none;
+      }
+      
+      .task-list li:hover {
+        background-color: #f9f9f9;
+      }
+      
+      .task-list li .task-name {
+        flex: 1;
+        color: #333;
+      }
+      
+      .task-list li button {
+        padding: 5px 10px;
+        font-size: 14px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s;
+      }
+
+      .task-list li button:hover {
+        background-color: #e53935;
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List</h1>
+    <div class="input-container">
+      <input type="text" id="taskInput" placeholder="Enter task">
+      <button id="addTaskBtn">Add</button>
+    </div>
+    <ul class="task-list" id="taskList"></ul>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const taskList = document.getElementById('taskList');
+
+    addTaskBtn.addEventListener('click', addTask);
+    taskInput.addEventListener('keydown', function(event) {
+      if (event.keyCode === 13) {
+        addTask();
+      }
+    });
+
+    function addTask() {
+      const taskName = taskInput.value.trim();
+      if (taskName !== '') {
+        const taskItem = document.createElement('li');
+        taskItem.innerHTML = `
+          <span class="task-name">${taskName}</span>
+          <button class="delete-task-btn">Delete</button>
+        `;
+        taskList.appendChild(taskItem);
+        taskInput.value = '';
+      }
+    }
+
+    taskList.addEventListener('click', function(event) { 
+      if (event.target.classList.contains('delete-task-btn')) {
+        const taskItem = event.target.parentNode;
+        taskList.removeChild(taskItem);
+      }
+    });
+  </script>
+</body>
+</html>
